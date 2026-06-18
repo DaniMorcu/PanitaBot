@@ -1,0 +1,25 @@
+{
+  "name": "panita-bot",
+  "version": "1.0.0",
+  "description": "Bot de Telegram con integración de IA para grupos",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "dev:watch": "nodemon --exec ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "dotenv": "^16.4.7",
+    "grammy": "^1.35.0",
+    "mongoose": "^8.9.0",
+    "openai": "^6.44.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}
