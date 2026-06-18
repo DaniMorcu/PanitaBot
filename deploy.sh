@@ -190,7 +190,7 @@ echo ""
 read -p "GEMINI_API_KEY (global, opcional - cada grupo puede tener la suya): " GEMINI_API_KEY
 
 # GEMINI_MODEL
-read -p "GEMINI_MODEL (default: gemini-2.5-flash-lite): " GEMINI_MODEL
+read -p "GEMINI_MODEL (default: gemini-5-flash-lite): " GEMINI_MODEL
 GEMINI_MODEL=${GEMINI_MODEL:-"gemini-2.5-flash-lite"}
 
 echo ""
@@ -235,7 +235,7 @@ gcloud run deploy "$SERVICE_NAME" \
     --set-env-vars "DEFAULT_MODEL=gemini" \
     --set-env-vars "DEFAULT_MAX_TOKENS=1024" \
     --set-env-vars "DEFAULT_SUMMARY_COUNT=50" \
-    --set-env-vars "WEBHOOK_URL=https://placeholder.run.app" \
+    --set-env-vars "WEBHOOK_URL=" \
     --quiet
 
 # Obtener la URL asignada por Cloud Run
@@ -256,6 +256,10 @@ gcloud run services update "$SERVICE_NAME" \
     --quiet
 
 print_ok "Webhook URL configurada: ${SERVICE_URL}/webhook"
+
+# Esperar a que el nuevo revision esté listo
+echo "Esperando a que el servicio se actualice (30 segundos)..."
+sleep 30
 
 # =============================================================================
 # PASO 9: Verificar
